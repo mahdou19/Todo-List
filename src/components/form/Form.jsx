@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import "./form.css";
+
 
 function Form() {
   return (
-    <div>Form</div>
-  )
+    <form onSubmit="submit">
+      <input type="text" placeholder="Ajouter une tache" />
+      <button>Ajouter</button>
+    </form>
+  );
 }
 
-export default Form
+export default Form;

@@ -29,8 +29,8 @@ export default function TaskItem({title, items}) {
     <Divider />
     <List
         sx={{
-          width: 200,
-          height: 230,
+          width: 230,
+          height: 300,
           bgcolor: 'background.paper',
           overflow: 'auto',
         }}

@@ -9,7 +9,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: "column",
     marginTop: "20px",
     
   },
@@ -22,7 +21,13 @@ function MainPage() {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="sm" className={classes.container}>
+    <Container maxWidth="sm" sx={{
+      display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: "column",
+    marginTop: "20px",
+    }}>
         <ListTask />
         <Form />
       </Container>
