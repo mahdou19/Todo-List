@@ -12,12 +12,15 @@ import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import { Button } from "@mui/material";
 
-export default function TaskItem({title, items}) {
+export default function TaskItem({title, items, handleDelete}) {
     const [checked, setChecked] = React.useState(items.done);
+
+   
 
     const handleChange = (event) => {
         console.log(event.target.checked);
       };
+  
  
   return (
     <Card>
@@ -30,7 +33,7 @@ export default function TaskItem({title, items}) {
     <List
         sx={{
           width: 230,
-          height: 300,
+          height: 250,
           bgcolor: 'background.paper',
           overflow: 'auto',
         }}
@@ -52,7 +55,7 @@ export default function TaskItem({title, items}) {
                 />
               </ListItemIcon>
               <ListItemText primary={`${value.name}`} />
-              <Button>X</Button>
+              <Button onClick={() => handleDelete(value.id)}>X</Button>
             </ListItem>
           );
         })}
