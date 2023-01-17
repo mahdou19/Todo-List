@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -13,10 +13,9 @@ import Divider from '@mui/material/Divider';
 import { Button } from "@mui/material";
 
 export default function TaskItem({title, items, handleDelete}) {
-    const [checked, setChecked] = React.useState(items.done);
+    const [checked, setChecked] = useState(items.done);
 
-   
-
+   ;
     const handleChange = (event) => {
         console.log(event.target.checked);
       };
@@ -27,7 +26,7 @@ export default function TaskItem({title, items, handleDelete}) {
     <CardHeader
       sx={{ px: 2, py: 1 }}
       title={title}
-    //   subheader={`${numberOfChecked(items)}/${items.length} selected`}
+      subheader={`Nombre de tache(s): ${items.length} `}
     />
     <Divider />
     <List

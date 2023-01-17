@@ -1,0 +1,26 @@
+{
+  "taskProgress": [
+    {
+      "id": 2,
+      "name": "Ma deuxième tache",
+      "done": false
+    },
+    {
+      "id": 1673961496358,
+      "name": "ddd",
+      "done": false
+    }
+  ],
+  "taskDone": [
+    {
+      "id": 1,
+      "name": "Ma première tache",
+      "done": true
+    },
+    {
+      "id": 2,
+      "name": "Ma deuxième tache",
+      "done": true
+    }
+  ]
+}
