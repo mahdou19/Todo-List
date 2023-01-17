@@ -14,16 +14,20 @@ function Form() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const id = new Date().getTime();
-    const name = input;
-    const done = false;
-    const newTask = { id, name, done };
-    await AddTask(newTask).then((res) => {
-      dispatch(addTask(newTask));
-      if (res.statusText === "Created") {
-        render(<Toaster severity={"success"} message="Tache créé" />);
-      }
-    });
+    if(input){
+      const id = new Date().getTime();
+      const name = input;
+      const done = false;
+      const newTask = { id, name, done };
+      await AddTask(newTask).then((res) => {
+        dispatch(addTask(newTask));
+        if (res.statusText === "Created") {
+          render(<Toaster severity={"success"} message="Tache créé" />);
+        }
+      });
+
+    }
+   
 
     setInput("");
   };

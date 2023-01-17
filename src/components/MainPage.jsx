@@ -8,12 +8,12 @@ function MainPage() {
   
  
   return (
-    <Container maxWidth="sm" sx={{
+    <Container maxWidth="md" sx={{
       display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: "column",
-    marginTop: "20px",
+   
     }}>
         <ListTask />
         <Form/>

@@ -16,23 +16,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTasksData } from "../../feature/task.slice.js";
 import ConfirmDialog from "../common/Dialog.jsx";
 
-export default function TaskItem({title}) {
+export default function TaskItem({title, tasksData, fetchTask}) {
    
-    const {FetchAllTask, DeleteTask} = useTask()
-
-    const dispatch = useDispatch();
-    const tasksData = useSelector((state) => state.tasks.tasks)
-
+    
+  const {DeleteTask} = useTask()
     const [checked, setChecked] = useState(tasksData.done);
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subTitle: '' })
 
-    async function fetchTask(){
-      const data = await FetchAllTask()
-      dispatch(setTasksData(data));
-    }
-    useEffect( () => {
-      fetchTask()
-    }, []);
+   
 
     const handleDelete = async (id)=>{
       setConfirmDialog({
