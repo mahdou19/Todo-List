@@ -8,7 +8,8 @@ function MainPage() {
   
  
   return (
-    <Container maxWidth="md" sx={{
+    <Container maxWidth="sm" sx={{
+      minHeight: "90vh",
       display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

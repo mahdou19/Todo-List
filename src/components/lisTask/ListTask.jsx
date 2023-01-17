@@ -40,9 +40,9 @@ function ListTask() {
       <Grid item>
         <TaskItem title="Tache En cours" tasksData={tasksData} fetchTask={fetchTask} />
       </Grid>
-      <Grid item>
+      {/* <Grid item>
         <TaskItem title="Tache En Fini" tasksData={tasksData} fetchTask={fetchTask} />
-      </Grid>
+      </Grid> */}
       </Grid>
     </Box>
   );
