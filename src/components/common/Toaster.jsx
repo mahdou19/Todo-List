@@ -10,13 +10,15 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 function Toaster({severity, message}) {
     const [open, setOpen] = useState(true);
+    const { vertical, horizontal } = {vertical: 'top', horizontal: 'right',
+    }
 
     const handleClose = () => {
       setOpen(false);
     }
   return (
     <Stack spacing={2} sx={{ width: '100%' }}>
-       <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+       <Snackbar open={open} autoHideDuration={2000} onClose={handleClose} anchorOrigin={{ vertical, horizontal }}>
         <Alert severity={severity} sx={{ width: '100%' }}>
           {message}
         </Alert>

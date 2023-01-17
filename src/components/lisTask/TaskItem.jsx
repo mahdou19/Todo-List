@@ -14,6 +14,7 @@ import { Button } from "@mui/material";
 import { useTask } from "../hooks/useTask.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setTasksData } from "../../feature/task.slice.js";
+import ConfirmDialog from "../common/Dialog.jsx";
 
 export default function TaskItem({title}) {
    
@@ -23,16 +24,21 @@ export default function TaskItem({title}) {
     const tasksData = useSelector((state) => state.tasks.tasks)
 
     const [checked, setChecked] = useState(tasksData.done);
+    const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subTitle: '' })
 
     async function fetchTask(){
       const data = await FetchAllTask()
-      dispatch(setTasksData(data))
+      dispatch(setTasksData(data));
     }
     useEffect( () => {
       fetchTask()
     }, []);
 
     const handleDelete = async (id)=>{
+      setConfirmDialog({
+        ...confirmDialog,
+        isOpen: false
+    })
       await DeleteTask(id)
       fetchTask()
     }
@@ -76,11 +82,26 @@ export default function TaskItem({title}) {
                 />
               </ListItemIcon>
               <ListItemText primary={`${value.name}`} />
-              <Button onClick={() => handleDelete(value.id)}>X</Button>
+              <Button 
+                  onClick={() => {
+                    setConfirmDialog({
+                        isOpen: true,
+                        title: `${value.name}`,
+                        subTitle: 'Êtes vous sûre de vouloir supprimer cette tache?',
+                        onConfirm: () => { handleDelete(value.id) }
+                    })
+                }}              
+              
+              
+           >X</Button>
             </ListItem>
           );
         })}
       </List>
+      <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
    </Card>  
   );
 }

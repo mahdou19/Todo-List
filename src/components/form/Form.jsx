@@ -21,7 +21,7 @@ function Form() {
     await AddTask(newTask).then((res) => {
       dispatch(addTask(newTask));
       if (res.statusText === "Created") {
-        render(<Toaster severity={"success"} message={res.statusText} />);
+        render(<Toaster severity={"success"} message="Tache créé" />);
       }
     });
 

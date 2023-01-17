@@ -14,9 +14,8 @@ export function useTask() {
   async function DeleteTask(id) {
     await axios.delete(`http://localhost:4000/taskProgress/${id}`)
     .then(data => {
-      console.log(data);
       render(
-        <Toaster  severity={"error"} message={"Deleted"}/>,
+        <Toaster  severity={"error"} message={"Tache Supprimée"}/>,
     )
     })
     
