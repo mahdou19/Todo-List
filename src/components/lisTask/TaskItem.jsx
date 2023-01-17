@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -11,9 +11,31 @@ import CardHeader from '@mui/material/CardHeader';
 
 import Divider from '@mui/material/Divider';
 import { Button } from "@mui/material";
+import { useTask } from "../hooks/useTask.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { setTasksData } from "../../feature/task.slice.js";
 
-export default function TaskItem({title, items, handleDelete}) {
-    const [checked, setChecked] = useState(items.done);
+export default function TaskItem({title}) {
+   
+    const {FetchAllTask, DeleteTask} = useTask()
+
+    const dispatch = useDispatch();
+    const tasksData = useSelector((state) => state.tasks.tasks)
+
+    const [checked, setChecked] = useState(tasksData.done);
+
+    async function fetchTask(){
+      const data = await FetchAllTask()
+      dispatch(setTasksData(data))
+    }
+    useEffect( () => {
+      fetchTask()
+    }, []);
+
+    const handleDelete = async (id)=>{
+      await DeleteTask(id)
+      fetchTask()
+    }
 
    ;
     const handleChange = (event) => {
@@ -26,7 +48,7 @@ export default function TaskItem({title, items, handleDelete}) {
     <CardHeader
       sx={{ px: 2, py: 1 }}
       title={title}
-      subheader={`Nombre de tache(s): ${items.length} `}
+      subheader={`Nombre de tache(s): ${tasksData.length} `}
     />
     <Divider />
     <List
@@ -40,7 +62,7 @@ export default function TaskItem({title, items, handleDelete}) {
         component="div"
         role="list"
       >
-        {items.map((value) => {
+        {tasksData.map((value) => {
           return (
             <ListItem
               key={value.id}
